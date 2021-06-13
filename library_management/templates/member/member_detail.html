@@ -1,0 +1,99 @@
+{% extends 'base.html' %} 
+
+{% block custom_css %}
+	<link
+		href="{{ url_for('static', filename = 'css/dataTables.bootstrap4.min.css') }}"
+		rel="stylesheet"
+		type="text/css"
+	/>
+{% endblock custom_css %} 
+
+{% block title %}
+Member Detail
+{% endblock title %}	
+
+{% block content %}
+<h1 class="h3 mb-4 text-gray-800 font-weight-bold">Member Details</h1>
+<div class="row p-4 bg-white">
+	<div class="col-md-6 col-12">
+		<div class="d-flex align-items-center flex-column mb-4">
+			<img src="{{url_for("static", filename='img/profile.svg')}}" 
+				alt="profile-image" class="img-fluid w-50">
+		</div>
+	</div>
+	<div class="col-md-6 col-12 text-gray-800 h5 bg-light p-3">
+		<div class="mb-4">
+			<label for="">Name</label>
+			<p class="text-gray-600 h6">{{member.name}}</p>
+		</div>
+		<div class="mb-4">
+			<label for="">Username</label>
+			<p class="text-gray-600 h6">{{member.username}}</p>
+		</div>
+		<div class="mb-4">
+			<label for="">Email</label>
+			<p class="text-gray-600 h6">{{member.email}}</p>
+		</div>
+		<div class="mb-4">
+			<label for="">Total Payment</label>
+			<p class="text-gray-600 h6">Rs. {{member.amount_paid}}</p>
+		</div>
+		<div class="mb-4">
+			<label for="">Total Debt</label>
+			<p class="text-gray-600 h6">Rs. {{member.debt}}</p>
+		</div>
+	</div>
+	<div class="col-12 mt-5">
+		<h2 class="h4 mb-5 text-gray-800 font-weight-bold">
+			Transaction History
+		</h2>
+		<div class="table-responsive">
+			<table
+				class="table table-bordered text-gray-700 text-wrap"
+				id="dataTable"
+				width="100%"
+				cellspacing="0"
+			>
+				<thead>
+					<tr>
+						<th style='width:30px'>ID</th>
+						<th style='width:600px'>Book Title</th>
+						<th style='width:300px'>Status</th>
+						<th>Deadline</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for transaction in member.transactions %}
+					<tr>
+						<td>{{transaction.id}}</td>
+						<td >
+							<a href="{{url_for('book_detail_view', id=transaction.book.id)}}" class="btn btn-link">
+								{{transaction.book.title |truncate(50)}}
+							</a>
+						</td>
+						<td class='{% if transaction.status == 'Issued' %}text-warning{% else %}text-success{% endif %}'>
+							{{transaction.status}}
+						</td>
+						<td>{{transaction.deadline.strftime("%d %b, %Y")}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock content %}
+
+{% block custom_js %}
+<script src="{{ url_for('static', filename = 'js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'js/dataTables.bootstrap4.min.js') }}"></script>
+<script>
+	$(document).ready(function() {
+			$('#dataTable').DataTable({
+				"order": [[ 0, "dsc" ]],
+				"pageLength": 5
+			});
+		});
+</script>
+{% endblock custom_js %}
+

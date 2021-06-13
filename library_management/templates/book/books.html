@@ -1,0 +1,84 @@
+{% extends 'base.html' %} 
+{% block custom_css %}
+	<link
+		href="{{ url_for('static', filename = 'css/dataTables.bootstrap4.min.css') }}"
+		rel="stylesheet"
+		type="text/css"
+	/>
+{% endblock custom_css %} 
+
+{% block title %}
+Books List
+{% endblock title %}
+
+{% block content %}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800 font-weight-bold">Books</h1>
+<p class="mb-4 text-gray-800">
+	You can view all of the available books here and perform necessary actions.
+</p>
+
+<!-- DataTables -->
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+		<h6 class="m-0 font-weight-bold text-primary">Books List</h6>
+	</div>
+	<div class="card-body">
+		<div class="table-responsive">
+			<table
+				class="table table-bordered text-gray-700 text-wrap"
+				id="dataTable"
+				width="100%"
+				cellspacing="0"
+			>
+				<thead>
+					<tr>
+						<th style='width:30px'>ID</th>
+						<th style='width:600px'>Title</th>
+						<th style='width:300px'>Authors</th>
+						<th>Stock</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for book in books %}
+					<tr>
+						<td>{{book.id}}</td>
+						<td >
+							<a href="{{url_for('book_detail_view', id=book.id)}}" class="btn btn-link">
+								{{book.title |truncate(50)}}
+							</a>
+						</td>
+						<td>{{book.authors}}</td>
+						<td>{{book.stock}}</td>
+						<td>
+							<a href="{{url_for('book_update_view', id=book.id)}}" class="btn btn-primary mb-2 mr-2" >
+								Update
+							</a>
+							<button type="button" class="btn btn-danger mb-2" data-toggle="modal" data-target="#delete-{{book.id}}">
+								Delete
+							</button>
+							{% include 'book/book_delete_modal.html' %}
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock content %} 
+{% block custom_js %}
+<script src="{{ url_for('static', filename = 'js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'js/dataTables.bootstrap4.min.js') }}"></script>
+<script>
+	$(document).ready(function() {
+		$('#dataTable').DataTable({
+			"order": [[ 0, "dsc" ]],
+		});
+	});
+</script>
+
+{% endblock custom_js %}

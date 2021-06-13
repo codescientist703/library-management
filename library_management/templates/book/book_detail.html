@@ -1,0 +1,147 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-baseline">
+	<h1 class="h3 mb-5 text-gray-800 font-weight-bold">Book Details</h1>
+	{% include 'book/book_issue_modal.html' %}
+	<button type="button" class="btn btn-primary mr-5" 
+		data-toggle="modal" data-target="#issue-modal-{{book.id}}" 
+		{% if book.stock == 0 %}disabled{% endif %}>
+		Issue This Book
+	</button>
+</div>
+<div class="row">
+	<div class="col-xl-6 mb-4 mb-xl-0">
+	<h2 class="h4 mb-4 text-gray-800 font-weight-bold">
+		<i class="fas fa-info-circle mr-3 text-gray-500"></i>
+		Information
+	</h2>
+	<table class="table table-striped text-gray-800 bg-white">
+		<thead>
+			<tr>
+				<th scope="col" class='w-50'>Key</th>
+				<th scope="col">Value</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+					<th scope="row">
+						title
+					</th>
+					<td>{{book.title}}</td>
+			</tr>
+			<tr>
+					<th scope="row">
+						Authors
+					</th>
+					<td>{{book.authors}}</td>
+			</tr>
+			<tr>
+					<th scope="row">
+						Average Rating
+					</th>
+					<td>{{book.average_rating}}</td>
+			</tr>
+			<tr>
+					<th scope="row">
+						Rating Count
+					</th>
+					<td>{{book.ratings_count}}</td>
+			</tr>
+			<tr>
+					<th scope="row">
+						Reviews Count
+					</th>
+					<td>{{book.text_reviews_count}}</td>
+			</tr>
+			<tr>
+					<th scope="row">
+						Stock Available
+					</th>
+					<td>{{book.stock}}</td>
+			</tr>
+			<tr>
+					<th scope="row">
+						Total Stock
+					</th>
+					<td>{{book.total_stock}}</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	<div class="col-xl-6">
+			<h2 class="h4 mb-4 text-gray-800 font-weight-bold">
+				<i class="fas fa-cog mr-3 text-gray-500"></i>
+				Technical Details
+			</h2>
+		<table class="table table-striped text-gray-800 bg-white">
+			<thead>
+				<tr>
+					<th scope="col" class='w-50'>Key</th>
+					<th scope="col">Value</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">
+						ID
+					</th>
+					<td>{{book.id}}</td>
+				</tr>
+				<tr>
+						<th scope="row">
+							Language Code
+						</th>
+						<td>{{book.language_code}}</td>
+				</tr>
+				<tr>
+						<th scope="row">
+							Number of Pages
+						</th>
+						<td>{{book.num_pages}}</td>
+				</tr>
+				<tr>
+						<th scope="row">
+							Publication Date
+						</th>
+						<td>{{book.publication_date.strftime("%d %b, %Y")}}</td>
+				</tr>
+				<tr>
+						<th scope="row">
+							Rent Price
+						</th>
+						<td>Rs. {{book.price}}</td>
+				</tr>
+				<tr>
+						<th scope="row">
+							ISBN
+						</th>
+						<td>{{book.isbn}}</td>
+				</tr>
+				<tr>
+						<th scope="row">
+							ISBN13
+						</th>
+						<td>{{book.isbn13}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+{% endblock content %}
+{% block custom_js %}
+
+<script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+
+<script>
+	$(function () {
+    $("#search").autocomplete({
+      source: "{{url_for('member_search_api')}}"
+    });
+  });
+</script>
+{% endblock custom_js %}

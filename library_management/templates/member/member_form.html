@@ -1,0 +1,29 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Add Member form
+{% endblock title %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-6 mx-auto col-12">
+		<form method="POST" class="py-4">
+		<h1 class="h3 mb-4 text-gray-800 font-weight-bold">{{context.heading}}</h1>
+			{{form.csrf_token}}
+			<div class="form-group">
+				{{form.name.label(class="text-gray-700")}}
+				{{form.name(class="form-control")}}
+			</div>
+			<div class="form-group">
+				{{form.username.label(class="text-gray-700")}}
+				{{form.username(class="form-control")}}
+			</div>
+			<div class="form-group">
+				{{form.email.label(class="text-gray-700")}}
+				{{form.email(class="form-control")}}
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Import Books From API
+{% endblock title %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-6 mx-auto col-12">
+		<form method="POST" class="py-4">
+		<h1 class="h3 mb-4 text-gray-800 font-weight-bold">Import Books From API </h1>
+			{{form.csrf_token}}
+			<div class="form-group">
+				{{form.number_books.label(class="text-gray-700")}}
+				{{form.number_books(class="form-control")}}
+			</div>
+			<div class="form-group">
+				{{form.title.label(class="text-gray-700")}}
+				{{form.title(class="form-control")}}
+			</div>
+			<div class="form-group">
+				{{form.authors.label(class="text-gray-700")}}
+				{{form.authors(class="form-control")}}
+			</div>
+			<div class="form-group">
+				{{form.publisher.label(class="text-gray-700")}}
+				{{form.publisher(class="form-control")}}
+			</div>
+			<button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
+		</form>
+	</div>
+</div>
+{% endblock content %}
+
+{% block custom_js %}
+<script>
+document.getElementById("submit-btn").addEventListener("click", function(){
+	this.textContent = "Submitting..."
+})
+</script>
+{% endblock custom_js %}
+

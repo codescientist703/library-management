@@ -1,0 +1,132 @@
+{% extends 'base.html' %} 
+{% block custom_css %}
+	<link
+		href="{{ url_for('static', filename = 'css/dataTables.bootstrap4.min.css') }}"
+		rel="stylesheet"
+		type="text/css"
+	/>
+{% endblock custom_css %} 
+
+{% block title %}
+Transactions List
+{% endblock title %}
+
+{% block content %}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800 font-weight-bold">Transactions</h1>
+<p class="mb-4 text-gray-800">
+	All of the transaction history is available here.
+</p>
+
+<!-- DataTables -->
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+		<h6 class="m-0 font-weight-bold text-primary">Transaction List</h6>
+	</div>
+	<div class="card-body">
+		<div class="table-responsive">
+			<table
+				class="table table-bordered text-gray-700"
+				id="dataTable"
+				width="100%"
+				cellspacing="0"
+			>
+				<thead>
+					<tr>
+						<th >ID</th>
+						<th>Status</th>
+						<th>Member</th>
+						<th>Book</th>
+						<th>Amount Charged</th>
+						<th>Start Date</th>
+						<th>End Date</th>
+						<th>Deadline</th>
+						<th>Return</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for transaction in transactions %}
+					<tr>
+						<td>{{transaction.id}}</td>
+						<td 
+							class='{% if transaction.status == 'Issued' %}text-warning{% else %}text-success{% endif %}'>
+							{{transaction.status}}
+						</td>
+						<td>
+							{% if transaction.member %}
+							<a href="{{url_for("member_detail_view", username=transaction.member.username)}}">
+								{{transaction.member.username}}
+							</a>
+							{% else %}
+							Deleted Member
+							{% endif %}
+						</td>
+						<td>
+							{% if  transaction.book %}
+							<a href="{{url_for('book_detail_view', id=transaction.book.id)}}" class="btn btn-link">
+									{{transaction.book.title | truncate(40)}}
+							</a>
+							{% else %}
+							Deleted Book
+							{% endif %}
+						</td>
+						<td>
+						{% if transaction.status == 'Issued' %} NA 
+						{% else %} Rs. {{transaction.amount}}
+						{% endif %}
+						</td>
+						<td>{{transaction.start_date.strftime("%d %b, %Y")}}</td>
+						<td>
+						{% if transaction.status == 'Issued' %} NA 
+						{% else %} {{transaction.end_date.strftime("%d %b, %Y")}}
+						{% endif %}
+						</td>
+						<td>{{transaction.deadline.strftime("%d %b, %Y")}}</td>
+						<td>
+							{% if transaction.status == 'Issued' and transaction.member != None and transaction.book != None %}
+								<button type="button" class="btn btn-primary" data-toggle="modal" 
+									data-target="#return-modal-{{transaction.id}}">
+									Return
+								</button>
+							{% endif %}
+							{% include 'transaction/transaction_return_modal.html' %}
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock content %} 
+{% block custom_js %}
+<script src="{{ url_for('static', filename = 'js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'js/dataTables.bootstrap4.min.js') }}"></script>
+<script>
+$(document).ready(function() {
+	$('#dataTable').DataTable( {
+		"order": [[ 5, "dsc" ]],
+		initComplete: function () {
+			this.api().column(1).every( function () {
+				var column = this;
+				var select = $('<select class="custom-select"><option value=""></option></select>')
+						.appendTo( $(column.header()).empty() )
+						.on( 'change', function () {
+								var val = $.fn.dataTable.util.escapeRegex($(this).val());
+								column
+										.search( val ? '^'+val+'$' : '', true, false )
+										.draw();
+						} );
+				data = ['Issued', 'Returned']
+				data.forEach( function ( d ) {
+						select.append( '<option value="'+d+'">'+d+'</option>' )
+				} );
+			} );
+		},
+	} );
+} );
+</script>
+
+{% endblock custom_js %}

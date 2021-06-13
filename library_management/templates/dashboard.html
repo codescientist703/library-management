@@ -1,0 +1,144 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Dashboard
+{% endblock title %}
+
+{% block content %}
+
+<h1 class="h3 mb-5 text-gray-800 font-weight-bold">Reports</h1>
+<div class="row">
+<div class="col-xl-4 col-md-6 mb-4 col-12">
+		<div class="card border-left-primary shadow h-100 py-2">
+				<div class="card-body">
+						<div class="row no-gutters align-items-center">
+								<div class="col mr-2">
+										<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+												Total Revenue
+										</div>
+										<div class="h5 mb-0 font-weight-bold text-gray-800">Rs. {{report.total_revenue}}</div>
+								</div>
+								<div class="col-auto">
+										<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+								</div>
+						</div>
+				</div>
+		</div>
+</div>
+
+<!-- Earnings (Monthly) Card Example -->
+<div class="col-xl-4 col-md-6 mb-4 col-12">
+		<div class="card border-left-success shadow h-100 py-2">
+				<div class="card-body">
+						<div class="row no-gutters align-items-center">
+								<div class="col mr-2">
+										<div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+												Total Issues
+										</div>
+										<div class="h5 mb-0 font-weight-bold text-gray-800">{{report.total_issues}}</div>
+								</div>
+								<div class="col-auto">
+										<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+								</div>
+						</div>
+				</div>
+		</div>
+</div>
+
+<div class="col-xl-4 col-md-6 mb-4 col-12">
+		<div class="card border-left-warning shadow h-100 py-2">
+				<div class="card-body">
+						<div class="row no-gutters align-items-center">
+								<div class="col mr-2">
+										<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+												Pending Issues
+										</div>
+										<div class="h5 mb-0 font-weight-bold text-gray-800">{{report.pending_issues}}</div>
+								</div>
+								<div class="col-auto">
+										<i class="fas fa-comments fa-2x text-gray-300"></i>
+								</div>
+						</div>
+				</div>
+		</div>
+</div>
+</div>
+
+<div class="row">
+	<!-- Area Chart -->
+	<div class="col-xl-6 col-12">
+			<div class="card shadow mb-4 border-bottom-primary">
+					<!-- Card Header - Dropdown -->
+					<div
+							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							<h6 class="m-0 font-weight-bold text-primary">Popular Books</h6>
+					</div>
+					<!-- Card Body -->
+					<div class="card-body">
+							<div class="chart-area h-100">
+									<table class="table table-striped text-gray-800">
+										<thead>
+											<tr>
+												<th scope="col">Title</th>
+												<th scope="col">Current Stock</th>
+												<th scope="col">Stock Available</th>
+												<th scope="col">Revenue</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for book in report.top_books %}
+											<tr>
+													<th scope="row">
+														<a href="{{url_for('book_detail_view', id=book.id)}}" class="btn btn-link">
+															{{book.title |truncate(25)}}
+														</a>
+													</th>
+													<td>{{book.stock}}</td>
+													<td>{{book.total_stock}}</td>
+													<td>{{book.revenue}}</td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+							</div>
+					</div>
+			</div>
+	</div>
+	<div class="col-xl-6 col-12">
+			<div class="card shadow mb-4 border-bottom-secondary">
+					<!-- Card Header - Dropdown -->
+					<div
+							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							<h6 class="m-0 font-weight-bold text-secondary">Most Paying Customers</h6>
+					</div>
+					<!-- Card Body -->
+					<div class="card-body">
+							<div class="chart-area h-100">
+									<table class="table table-striped text-gray-800">
+										<thead>
+											<tr>
+												<th scope="col">Username</th>
+												<th scope="col">Name</th>
+												<th scope="col">Amount Paid</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for member in report.top_members %}
+											<tr>
+													<th scope="row">
+														<a href="{{url_for("member_detail_view", username=member.username)}}" class="btn btn-link">
+															{{member.username}}
+														</a>
+													</th>
+													<td>{{member.name}}</td>
+													<td>Rs. {{member.amount_paid}}</td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+							</div>
+					</div>
+			</div>
+	</div>
+</div>
+{% endblock content %}
