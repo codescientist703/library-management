@@ -8,14 +8,14 @@ Add Book form
 <div class="row">
 	<div class="col-md-6 mx-auto col-12">
 		<form method="POST" class="py-4">
-		<h1 class="h3 mb-4 text-gray-800 font-weight-bold">{{context.heading}}</h1>
+			<h1 class="h3 mb-4 text-gray-800 font-weight-bold">{{context.heading}}</h1>
 			{{form.csrf_token}}
 			{% for field in form %}
 			<div class="form-group">
-			{% if field.type != 'CSRFTokenField' %}
-				{{field.label(class="text-gray-700")}}
-				{{field(class="form-control")}}
-			{% endif %}
+				{% if field.type != 'CSRFTokenField' %}
+					{{field.label(class="text-gray-700")}}
+					{{field(class="form-control")}}
+				{% endif %}
 			</div>
 			{% endfor %}
 			<button type="submit" class="btn btn-primary">Submit</button>

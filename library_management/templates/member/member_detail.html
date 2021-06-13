@@ -9,7 +9,7 @@
 {% endblock custom_css %} 
 
 {% block title %}
-Member Detail
+{{member.username}} details
 {% endblock title %}	
 
 {% block content %}
@@ -45,6 +45,7 @@ Member Detail
 	</div>
 	<div class="col-12 mt-5">
 		<h2 class="h4 mb-5 text-gray-800 font-weight-bold">
+			<i class="fas fa-history mr-2"></i>
 			Transaction History
 		</h2>
 		<div class="table-responsive">
@@ -68,7 +69,7 @@ Member Detail
 						<td>{{transaction.id}}</td>
 						<td >
 							<a href="{{url_for('book_detail_view', id=transaction.book.id)}}" class="btn btn-link">
-								{{transaction.book.title |truncate(50)}}
+								{{transaction.book.title |truncate(40)}}
 							</a>
 						</td>
 						<td class='{% if transaction.status == 'Issued' %}text-warning{% else %}text-success{% endif %}'>

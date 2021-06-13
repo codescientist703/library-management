@@ -35,9 +35,9 @@ Transactions List
 				<thead>
 					<tr>
 						<th >ID</th>
-						<th>Status</th>
+						<th style='width: 80px'>Status</th>
 						<th>Member</th>
-						<th>Book</th>
+						<th style='width: 200px'>Book</th>
 						<th>Amount Charged</th>
 						<th>Start Date</th>
 						<th>End Date</th>
@@ -65,7 +65,7 @@ Transactions List
 						<td>
 							{% if  transaction.book %}
 							<a href="{{url_for('book_detail_view', id=transaction.book.id)}}" class="btn btn-link">
-									{{transaction.book.title | truncate(40)}}
+									{{transaction.book.title | truncate(30)}}
 							</a>
 							{% else %}
 							Deleted Book
@@ -128,5 +128,4 @@ $(document).ready(function() {
 	} );
 } );
 </script>
-
 {% endblock custom_js %}

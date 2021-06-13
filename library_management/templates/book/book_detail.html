@@ -1,14 +1,18 @@
 {% extends 'base.html' %} 
 
+{% block title %}
+Book Details
+{% endblock title %}
+
 {% block content %}
 <div class="d-flex justify-content-between align-items-baseline">
 	<h1 class="h3 mb-5 text-gray-800 font-weight-bold">Book Details</h1>
-	{% include 'book/book_issue_modal.html' %}
-	<button type="button" class="btn btn-primary mr-5" 
-		data-toggle="modal" data-target="#issue-modal-{{book.id}}" 
-		{% if book.stock == 0 %}disabled{% endif %}>
-		Issue This Book
-	</button>
+		{% include 'book/book_issue_modal.html' %}
+		<button type="button" class="btn btn-primary mr-5" 
+			data-toggle="modal" data-target="#issue-modal-{{book.id}}" 
+			{% if book.stock == 0 %}disabled{% endif %}>
+			Issue This Book
+		</button>
 </div>
 <div class="row">
 	<div class="col-xl-6 mb-4 mb-xl-0">
@@ -70,10 +74,10 @@
 	</table>
 	</div>
 	<div class="col-xl-6">
-			<h2 class="h4 mb-4 text-gray-800 font-weight-bold">
-				<i class="fas fa-cog mr-3 text-gray-500"></i>
-				Technical Details
-			</h2>
+		<h2 class="h4 mb-4 text-gray-800 font-weight-bold">
+			<i class="fas fa-cog mr-3 text-gray-500"></i>
+			Technical Details
+		</h2>
 		<table class="table table-striped text-gray-800 bg-white">
 			<thead>
 				<tr>
@@ -89,40 +93,40 @@
 					<td>{{book.id}}</td>
 				</tr>
 				<tr>
-						<th scope="row">
-							Language Code
-						</th>
-						<td>{{book.language_code}}</td>
+					<th scope="row">
+						Language Code
+					</th>
+					<td>{{book.language_code}}</td>
 				</tr>
 				<tr>
-						<th scope="row">
-							Number of Pages
-						</th>
-						<td>{{book.num_pages}}</td>
+					<th scope="row">
+						Number of Pages
+					</th>
+					<td>{{book.num_pages}}</td>
 				</tr>
 				<tr>
-						<th scope="row">
-							Publication Date
-						</th>
-						<td>{{book.publication_date.strftime("%d %b, %Y")}}</td>
+					<th scope="row">
+						Publication Date
+					</th>
+					<td>{{book.publication_date.strftime("%d %b, %Y")}}</td>
 				</tr>
 				<tr>
-						<th scope="row">
-							Rent Price
-						</th>
-						<td>Rs. {{book.price}}</td>
+					<th scope="row">
+						Rent Price
+					</th>
+					<td>Rs. {{book.price}}</td>
 				</tr>
 				<tr>
-						<th scope="row">
-							ISBN
-						</th>
-						<td>{{book.isbn}}</td>
+					<th scope="row">
+						ISBN
+					</th>
+					<td>{{book.isbn}}</td>
 				</tr>
 				<tr>
-						<th scope="row">
-							ISBN13
-						</th>
-						<td>{{book.isbn13}}</td>
+					<th scope="row">
+						ISBN13
+					</th>
+					<td>{{book.isbn13}}</td>
 				</tr>
 			</tbody>
 		</table>
