@@ -74,7 +74,7 @@ Library Management Dashboard
 					</div>
 					<!-- Card Body -->
 					<div class="card-body">
-							<div class="chart-area h-100">
+							<div class="table-responsive h-100">
 									<table class="table table-striped text-gray-800">
 										<thead>
 											<tr>
@@ -89,7 +89,7 @@ Library Management Dashboard
 											<tr>
 													<th scope="row">
 														<a href="{{url_for('book_detail_view', id=book.id)}}" class="btn btn-link">
-															{{book.title |truncate(25)}}
+															{{book.title |truncate(15)}}
 														</a>
 													</th>
 													<td>{{book.stock}}</td>
@@ -112,7 +112,7 @@ Library Management Dashboard
 					</div>
 					<!-- Card Body -->
 					<div class="card-body">
-							<div class="chart-area h-100">
+							<div class="table-responsive h-100">
 									<table class="table table-striped text-gray-800">
 										<thead>
 											<tr>
