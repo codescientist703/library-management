@@ -1,7 +1,7 @@
 {% extends 'base.html' %} 
 
 {% block title %}
-Book Details
+Book information
 {% endblock title %}
 
 {% block content %}
@@ -16,120 +16,128 @@ Book Details
 </div>
 <div class="row">
 	<div class="col-xl-6 mb-4 mb-xl-0">
-	<h2 class="h4 mb-4 text-gray-800 font-weight-bold">
-		<i class="fas fa-info-circle mr-3 text-gray-500"></i>
-		Information
-	</h2>
-	<table class="table table-striped text-gray-800 bg-white">
-		<thead>
-			<tr>
-				<th scope="col" class='w-50'>Key</th>
-				<th scope="col">Value</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-					<th scope="row">
-						title
-					</th>
-					<td>{{book.title}}</td>
-			</tr>
-			<tr>
-					<th scope="row">
-						Authors
-					</th>
-					<td>{{book.authors}}</td>
-			</tr>
-			<tr>
-					<th scope="row">
-						Average Rating
-					</th>
-					<td>{{book.average_rating}}</td>
-			</tr>
-			<tr>
-					<th scope="row">
-						Rating Count
-					</th>
-					<td>{{book.ratings_count}}</td>
-			</tr>
-			<tr>
-					<th scope="row">
-						Reviews Count
-					</th>
-					<td>{{book.text_reviews_count}}</td>
-			</tr>
-			<tr>
-					<th scope="row">
-						Stock Available
-					</th>
-					<td>{{book.stock}}</td>
-			</tr>
-			<tr>
-					<th scope="row">
-						Total Stock
-					</th>
-					<td>{{book.total_stock}}</td>
-			</tr>
-		</tbody>
-	</table>
+	<div class="card shadow h-100">
+		<div class="card-header p-3">
+			<h2 class="h4 mb-4 text-gray-800 font-weight-bold">
+				<i class="fas fa-info-circle mr-3 text-gray-500"></i>
+				Information
+			</h2>
+		</div>
+			<table class="table table-striped text-gray-800">
+				<thead>
+					<tr>
+						<th scope="col" class='w-50'>Key</th>
+						<th scope="col">Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+							<th scope="row">
+								title
+							</th>
+							<td>{{book.title}}</td>
+					</tr>
+					<tr>
+							<th scope="row">
+								Authors
+							</th>
+							<td>{{book.authors}}</td>
+					</tr>
+					<tr>
+							<th scope="row">
+								Average Rating
+							</th>
+							<td>{{book.average_rating}}</td>
+					</tr>
+					<tr>
+							<th scope="row">
+								Rating Count
+							</th>
+							<td>{{book.ratings_count}}</td>
+					</tr>
+					<tr>
+							<th scope="row">
+								Reviews Count
+							</th>
+							<td>{{book.text_reviews_count}}</td>
+					</tr>
+					<tr>
+							<th scope="row">
+								Stock Available
+							</th>
+							<td>{{book.stock}}</td>
+					</tr>
+					<tr>
+							<th scope="row">
+								Total Stock
+							</th>
+							<td>{{book.total_stock}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 	<div class="col-xl-6">
-		<h2 class="h4 mb-4 text-gray-800 font-weight-bold">
-			<i class="fas fa-cog mr-3 text-gray-500"></i>
-			Technical Details
-		</h2>
-		<table class="table table-striped text-gray-800 bg-white">
-			<thead>
-				<tr>
-					<th scope="col" class='w-50'>Key</th>
-					<th scope="col">Value</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th scope="row">
-						ID
-					</th>
-					<td>{{book.id}}</td>
-				</tr>
-				<tr>
-					<th scope="row">
-						Language Code
-					</th>
-					<td>{{book.language_code}}</td>
-				</tr>
-				<tr>
-					<th scope="row">
-						Number of Pages
-					</th>
-					<td>{{book.num_pages}}</td>
-				</tr>
-				<tr>
-					<th scope="row">
-						Publication Date
-					</th>
-					<td>{{book.publication_date.strftime("%d %b, %Y")}}</td>
-				</tr>
-				<tr>
-					<th scope="row">
-						Rent Price
-					</th>
-					<td>Rs. {{book.price}}</td>
-				</tr>
-				<tr>
-					<th scope="row">
-						ISBN
-					</th>
-					<td>{{book.isbn}}</td>
-				</tr>
-				<tr>
-					<th scope="row">
-						ISBN13
-					</th>
-					<td>{{book.isbn13}}</td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="card shadow h-100">
+			<div class="card-header p-3">
+				<h2 class="h4 mb-4 text-gray-800 font-weight-bold">
+					<i class="fas fa-cog mr-3 text-gray-500"></i>
+					Technical Details
+				</h2>
+			</div>
+			<table class="table table-striped text-gray-800 bg-white">
+				<thead>
+					<tr>
+						<th scope="col" class='w-50'>Key</th>
+						<th scope="col">Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">
+							ID
+						</th>
+						<td>{{book.id}}</td>
+					</tr>
+					<tr>
+						<th scope="row">
+							Language Code
+						</th>
+						<td>{{book.language_code}}</td>
+					</tr>
+					<tr>
+						<th scope="row">
+							Number of Pages
+						</th>
+						<td>{{book.num_pages}}</td>
+					</tr>
+					<tr>
+						<th scope="row">
+							Publication Date
+						</th>
+						<td>{{book.publication_date.strftime("%d %b, %Y")}}</td>
+					</tr>
+					<tr>
+						<th scope="row">
+							Rent Price
+						</th>
+						<td>Rs. {{book.price}}</td>
+					</tr>
+					<tr>
+						<th scope="row">
+							ISBN
+						</th>
+						<td>{{book.isbn}}</td>
+					</tr>
+					<tr>
+						<th scope="row">
+							ISBN13
+						</th>
+						<td>{{book.isbn13}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>
 

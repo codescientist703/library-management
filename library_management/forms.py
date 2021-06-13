@@ -6,19 +6,23 @@ from wtforms.validators import DataRequired, InputRequired
 
 
 class BookForm(FlaskForm):
-    title = StringField(label="Book title")
-    authors = StringField(label="Book Authors")
-    average_rating = IntegerField(label="Average Rating")
-    language_code = StringField(label="Language Code")
-    num_pages = IntegerField(label="Number of Pages")
-    ratings_count = IntegerField(label="Ratings Count")
-    text_reviews_count = IntegerField(label="Reviews count")
-    publication_date = DateField(label="Publication Date", format="%Y-%m-%d")
-    publisher = StringField(label="Publisher")
-    isbn = StringField(label="ISBN")
-    isbn13 = StringField(label="ISBN13")
-    stock = IntegerField(label="Stock")
-    price = IntegerField(label="Rent price")
+    title = StringField(label="Book title", validators=[DataRequired()])
+    authors = StringField(label="Book Authors", validators=[DataRequired()])
+    average_rating = IntegerField(label="Average Rating", validators=[DataRequired()])
+    language_code = StringField(label="Language Code", validators=[DataRequired()])
+    num_pages = IntegerField(label="Number of Pages", validators=[DataRequired()])
+    ratings_count = IntegerField(label="Ratings Count", validators=[DataRequired()])
+    text_reviews_count = IntegerField(
+        label="Reviews count", validators=[DataRequired()]
+    )
+    publication_date = DateField(
+        label="Publication Date", format="%Y-%m-%d", validators=[DataRequired()]
+    )
+    publisher = StringField(label="Publisher", validators=[DataRequired()])
+    isbn = StringField(label="ISBN", validators=[DataRequired()])
+    isbn13 = StringField(label="ISBN13", validators=[DataRequired()])
+    stock = IntegerField(label="Stock", validators=[DataRequired()])
+    price = IntegerField(label="Rent price", validators=[DataRequired()])
 
 
 class MemberForm(FlaskForm):
@@ -45,7 +49,8 @@ class ReturnForm(FlaskForm):
 
 class BookImportForm(FlaskForm):
     number_books = IntegerField(
-        label="Number of books to import", validators=[DataRequired()]
+        label="Number of books to import",
+        validators=[DataRequired()],
     )
     title = StringField(label="Book title")
     isbn = StringField(label="ISBN")

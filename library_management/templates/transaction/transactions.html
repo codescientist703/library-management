@@ -8,7 +8,7 @@
 {% endblock custom_css %} 
 
 {% block title %}
-Transactions List
+Transactions list
 {% endblock title %}
 
 {% block content %}
@@ -107,7 +107,7 @@ Transactions List
 <script>
 $(document).ready(function() {
 	$('#dataTable').DataTable( {
-		"order": [[ 5, "dsc" ]],
+		"order": [[ 5, "dsc" ], [ 0, "dsc"]],
 		initComplete: function () {
 			this.api().column(1).every( function () {
 				var column = this;
