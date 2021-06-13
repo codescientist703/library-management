@@ -34,41 +34,39 @@
 		<div id="wrapper">
 			{% include 'sidebar.html' %}
 			<div id="content-wrapper" class="d-flex flex-column">
-			<div id="content">
-				<!-- Navbar -->
-				{% include 'navbar.html' %}
+				<div id="content">
+					<!-- Navbar -->
+					{% include 'navbar.html' %}
 
-				<div class="container-fluid">
+					<div class="container-fluid">
 
-				<!-- Alerts -->
-				{% with messages = get_flashed_messages(with_categories=true) %} 
-				{% if messages %} 
-				{% for category, message in messages %}
-					<div class="alert alert-{{ category }}">
-						<button
-							type="button"
-							class="m1-2 mb-1 close"
-							data-dismiss="alert"
-							aria-label="Close"
-						>
-							<span aria-hidden="true">&times;</span>
-						</button>
-						{{ message }}
+						<!-- Alerts -->
+						{% with messages = get_flashed_messages(with_categories=true) %} 
+						{% if messages %} 
+						{% for category, message in messages %}
+							<div class="alert alert-{{ category }}">
+							<button
+								type="button"
+								class="m1-2 mb-1 close"
+								data-dismiss="alert"
+								aria-label="Close"
+							>
+								<span aria-hidden="true">&times;</span>
+							</button>
+							{{ message }}
+						</div>
+						{% endfor %} 
+						{% endif %} 
+						{% endwith %} 
+						<!-- End Alerts -->
+						<!-- Main Code -->
+						{% block content %} 
+						{% endblock %}
+						<a class="scroll-to-top rounded" href="#page-top">
+							<i class="fas fa-angle-up"></i>
+						</a>
 					</div>
-				{% endfor %} 
-				{% endif %} 
-				{% endwith %} 
-				<!-- End Alerts -->
-
-				<!-- Main Code -->
-				{% block content %} 
-				{% endblock %}
-				<a class="scroll-to-top rounded" href="#page-top">
-					<i class="fas fa-angle-up"></i>
-				</a>
-			</div>
-			</div>
-
+				</div>
 			<!-- Footer -->
 			{% include 'footer.html' %}
 			
