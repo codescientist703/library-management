@@ -12,7 +12,6 @@ class BasicTests(unittest.TestCase):
         app.config["WTF_CSRF_ENABLED"] = False
         app.config["DEBUG"] = False
         app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + TEST_DB
-        app.config["SECRET_KEY"] = "test"
         self.app = app.test_client()
         db.drop_all()
         db.create_all()
