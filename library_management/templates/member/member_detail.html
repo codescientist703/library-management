@@ -68,9 +68,13 @@
 					<tr>
 						<td>{{transaction.id}}</td>
 						<td >
-							<a href="{{url_for('book_detail_view', id=transaction.book.id)}}" class="btn btn-link">
-								{{transaction.book.title |truncate(40)}}
-							</a>
+							{% if transaction.book %}
+								<a href="{{url_for('book_detail_view', id=transaction.book.id)}}" class="btn btn-link">
+									{{transaction.book.title |truncate(40)}}
+								</a>
+							{% else %}
+								Deleted
+							{% endif %}
 						</td>
 						<td class='{% if transaction.status == 'Issued' %}text-warning{% else %}text-success{% endif %}'>
 							{{transaction.status}}
