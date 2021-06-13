@@ -2,7 +2,6 @@ from library_management import app
 from library_management.models import db
 from datetime import date
 import unittest
-import os
 
 TEST_DB = "test.db"
 
