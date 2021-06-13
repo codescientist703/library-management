@@ -19,3 +19,4 @@ Pipfile.lock
 test.db
 test.db-journal
 library.db
+.env
