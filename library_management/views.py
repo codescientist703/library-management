@@ -340,6 +340,12 @@ def transaction_list_view():
     )
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template("404.html"), 404
+
+
 # Utility Methods
 def form_display_errors(errors):
     for fieldName, errorMessage in errors.items():
