@@ -1,4 +1,5 @@
 {% extends 'base.html' %} 
+
 {% block custom_css %}
 	<link
 		href="{{ url_for('static', filename = 'css/dataTables.bootstrap4.min.css') }}"
@@ -13,13 +14,11 @@ Books List
 
 {% block content %}
 
-<!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800 font-weight-bold">Books</h1>
 <p class="mb-4 text-gray-800">
 	You can view all of the available books here and perform necessary actions.
 </p>
 
-<!-- DataTables -->
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">Books List</h6>
