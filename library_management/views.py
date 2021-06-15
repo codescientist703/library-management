@@ -82,8 +82,7 @@ def book_add_view():
         flash(f"Book successfully added !", category="success")
         return render_template("book/book_form.html", form=form, context=context)
 
-    if form.errors:
-        form_display_errors(form.errors)
+    form_display_errors(form.errors)
 
     return render_template("book/book_form.html", form=form, context=context)
 
@@ -126,8 +125,7 @@ def book_update_view(id):
         flash("Book successfully updated !", category="success")
         return redirect(url_for("book_list_view"))
 
-    if form.errors:
-        form_display_errors(form.errors)
+    form_display_errors(form.errors)
 
     return render_template("book/book_form.html", form=form, context=context)
 
@@ -258,8 +256,7 @@ def member_add_view():
             # Username already exists
             flash(f"This username is already taken !", category="warning")
 
-    if form.errors:
-        form_display_errors(form.errors)
+    form_display_errors(form.errors)
 
     return render_template("member/member_form.html", form=form, context=context)
 
@@ -293,8 +290,7 @@ def member_update_view(username):
         flash("Member successfully updated !", category="success")
         return redirect(url_for("member_list_view"))
 
-    if form.errors:
-        form_display_errors(form.errors)
+    form_display_errors(form.errors)
 
     return render_template("member/member_form.html", form=form, context=context)
 
@@ -332,8 +328,7 @@ def transaction_list_view():
             category="success",
         )
 
-    if form.errors:
-        form_display_errors(form.errors)
+    form_display_errors(form.errors)
 
     return render_template(
         "transaction/transactions.html", transactions=transactions, form=form
@@ -348,5 +343,6 @@ def page_not_found(e):
 
 # Utility Methods
 def form_display_errors(errors):
-    for fieldName, errorMessage in errors.items():
-        flash(f"{fieldName} - {''.join(errorMessage)}", category="danger")
+    if errors:
+        for fieldName, errorMessage in errors.items():
+            flash(f"{fieldName} - {''.join(errorMessage)}", category="danger")

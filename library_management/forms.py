@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.fields.html5 import DateField, EmailField, IntegerField
 from wtforms.fields.simple import HiddenField
-from wtforms.validators import DataRequired, InputRequired
+from wtforms.validators import DataRequired, InputRequired, NumberRange
 
 
 class BookForm(FlaskForm):
@@ -41,7 +41,10 @@ class IssueForm(FlaskForm):
 class ReturnForm(FlaskForm):
     extra_amount = IntegerField(
         label="Extra Amount Charged",
-        validators=[InputRequired("Please enter some amount!")],
+        validators=[
+            InputRequired("Please enter some amount!"),
+            NumberRange(min=0, message="Extra amount must be positive !"),
+        ],
         default=0,
     )
     transaction_id = HiddenField(label=None)

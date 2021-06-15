@@ -61,7 +61,7 @@ Transactions list
 						<td>
 							{% if  transaction.book %}
 							<a href="{{url_for('book_detail_view', id=transaction.book.id)}}" class="btn btn-link">
-									{{transaction.book.title | truncate(30)}}
+									{{transaction.book.title | truncate(25)}}
 							</a>
 							{% else %}
 							Deleted Book

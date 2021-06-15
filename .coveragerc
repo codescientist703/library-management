@@ -1,0 +1,2 @@
+[report]
+omit = */virtualenvs/*,*tests.py*,*app.py,*__init__.py
