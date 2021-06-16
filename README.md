@@ -30,3 +30,40 @@ Wtforms
 
 ## CSS Framework Used
 Bootstrap
+
+## Screenshots
+
+<div align="center">
+<br>
+  <img src="screenshots/dashboard.png" alt="dashboard" width="100%">
+
+<br>
+  <img src="screenshots/add-book.png" alt="add-book" width="100%">
+
+<br>
+  <img src="screenshots/add-member.png" alt="add-member" width="100%">
+
+<br>
+  <img src="screenshots/import-book.png" alt="import-book" width="100%">
+
+<br>
+  <img src="screenshots/book-list.png" alt="book-list" width="100%">
+
+<br>
+  <img src="screenshots/book-detail.png" alt="book-detail" width="100%">
+
+<br>
+  <img src="screenshots/book-issue.png" alt="book-issue" width="100%">
+
+<br>
+  <img src="screenshots/book-return.png" alt="book-return" width="100%">
+
+<br>
+  <img src="screenshots/transaction-list.png" alt="transaction-list" width="100%">
+
+<br>
+  <img src="screenshots/member-list.png" alt="member-list" width="100%">
+
+<br>
+  <img src="screenshots/member-detail.png" alt="member-detail" width="100%">
+</div>
